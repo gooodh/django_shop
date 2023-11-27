@@ -1,7 +1,6 @@
 django-admin startproject myshop .
 python manage.py makemigrations
 
-docker compose up -d --remove-orphans
 docker compose up -d --build
 docker compose -f docker-compose-prod.yml up -d --build
 docker compose up -d
@@ -9,7 +8,7 @@ docker compose down
 docker compose down -v
 
 docker compose exec web python myshop/manage.py migrate
-docker compose exec web python myshop/manage.py createsuperuser admin stqhJQmh admin@books.bo
+docker compose exec web python myshop/manage.py createsuperuser admin stqhJQmh admin@shop.sho
 docker compose exec web python myshop/manage.py test
 
 docker compose logs
@@ -17,10 +16,10 @@ docker compose exec web python myshop/manage.py collectstatic --noinput
 
 docker compose exec nginx bash
 docker exec -it django bash
+
 docker ps -a
 docker stop 
 docker container prune
-docker build -t books_m .
 docker exec -it books_docker_compose_nginx_1 cat /etc/nginx/conf.d/default.conf
 
 git status
@@ -31,20 +30,7 @@ git branch soaqaz_prod
 git checkout soaqaz_prod
 git push --set-upstream origin soaqaz_prod
 
-pip install environs
 
-python manage.py startapp books
-ch10 Django + Postgres + UUID https://django.fun/en/qa/47490/(по книги не пошли миграции)
-
-pip install Pillow
-pip instal whitenoise (static)
-
-pip install django-debug-toolbar
-
-sudo docker-compose exec web python -c 'import secrets; print(secrets.token_urlsafe(38))'
-
-gunicorn-20.1.0
-gunicorn -b 0.0.0.0:8000 config.wsgi:application
 
 
 

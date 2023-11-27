@@ -12,15 +12,15 @@ RUN useradd -rms /bin/bash shop
 RUN chmod 777 /opt /run
 
 WORKDIR /shop
-RUN mkdir /shop/staticfiles
-RUN mkdir /shop/media
-RUN chown -R shop:shop /shop && chmod 755 /shop
 
 COPY requirements.txt /shop/
-
 RUN pip install -r requirements.txt
 
 COPY --chown=shop:shop . .
+RUN mkdir /shop/staticfiles
+RUN mkdir /shop/myshop/media
+RUN chown -R shop:shop /shop && chmod 755 /shop
+
 USER shop
 
 

@@ -7,23 +7,14 @@ services:
         command: python /shop/myshop/manage.py runserver  --insecure 0.0.0.0:8000
         # command: gunicorn config.wsgi -b 0.0.0.0:8000 # new
         volumes:
-        - .:/shop
+        - static_volume:/shop/staticfiles
+        - media_volume:/shop/myshop/media
         ports:
             - 8000:8000
         depends_on:
         - db_shop
-        environment:
-        - static_volume:/shop/static
-        - media_volume:/shop/media
-        - "DJANGO_SECRET_KEY=)*_s#exg*#w+#-xt=vu8b010%%a&p@4edwyj0=(nqq90b9a8*n"
-        - "DJANGO_DEBUG=True"
-        - "DJANGO_SECURE_SSL_REDIRECT=False" # new
-        - "DJANGO_SECURE_HSTS_SECONDS=0" # new
-        - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False" # new
-        - "DJANGO_SECURE_HSTS_PRELOAD=False" # new
-        - "DJANGO_SESSION_COOKIE_SECURE=False" # new
-        - "DJANGO_CSRF_COOKIE_SECURE=False" # new
-
+        env_file:
+            - .env
     db_shop:
         image: postgres:15
         container_name: "POSTGRES_DB"
