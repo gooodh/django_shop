@@ -4,7 +4,8 @@ services:
     web:
         build: .
         container_name: "django"
-        command: python /shop/myshop/manage.py runserver  --insecure 0.0.0.0:8000
+        command: bash entrypoint.sh
+        # command: python /shop/myshop/manage.py runserver  --insecure 0.0.0.0:8000
         # command: gunicorn config.wsgi -b 0.0.0.0:8000 # new
         volumes:
         - static_volume:/shop/staticfiles
@@ -13,6 +14,7 @@ services:
             - 8000:8000
         depends_on:
         - db_shop
+        - rabbitmq
         env_file:
             - .env
     db_shop:
@@ -34,6 +36,15 @@ services:
     #         - web
     #     ports:
     #         - 80:80
+    rabbitmq:
+        image: rabbitmq:3.12-management
+        container_name: "rabbitmq"
+        environment:
+        - RABBITMQ_DEFAULT_USER=guest
+        - RABBITMQ_DEFAULT_PASS=guest
+        ports:
+        - "5672:5672"
+        - "15672:15672"
 
 volumes:
     pg_shop:

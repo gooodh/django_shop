@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'myshop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.getenv('POSTGRES_HOST', 'db_ferum'),
+        'HOST': os.getenv('POSTGRES_HOST', 'db_shop'),
         'PORT': os.getenv('POSTGRES_PORT', 5432),
         'USER': os.getenv('POSTGRES_USER', 'postgres'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
@@ -132,3 +132,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CART_SESSION_ID = 'cart'
+CELERY_BROKER_URL = 'amqp://guest:guest@rabbitmq:5672/'
