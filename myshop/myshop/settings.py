@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("DJANGO_SECRET_KEY",'django-insecure-hsl3q6b*5j-pq)#fm#_4#nd)05(+v-q+@ne(z@escuqcsrm#7u')
+SECRET_KEY = env("DJANGO_SECRET_KEY", 'django-insecure-hsl3q6b*5j-pq)#fm#_4#nd)05(+v-q+@ne(z@escuqcsrm#7u')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -133,3 +133,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CART_SESSION_ID = 'cart'
 CELERY_BROKER_URL = 'amqp://guest:guest@rabbitmq:5672/'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Конфигурация сервера электронной почты
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.getenv('addr_from')
+EMAIL_HOST_PASSWORD = os.getenv('password')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

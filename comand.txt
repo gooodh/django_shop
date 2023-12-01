@@ -33,7 +33,7 @@ git branch soaqaz_prod
 git checkout soaqaz_prod
 git push --set-upstream origin soaqaz_prod
 
-
+441 остановвился
 
 
 
