@@ -45,6 +45,16 @@ services:
         ports:
         - "5672:5672"
         - "15672:15672"
+    celery:
+        build: .
+        container_name: 'celery'
+        command: bash celery.sh
+        env_file:
+        - .env
+        depends_on:
+        - web
+        - db_shop
+        - rabbitmq
 
 volumes:
     pg_shop:
