@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -142,3 +143,8 @@ EMAIL_HOST_USER = os.getenv('addr_from')
 EMAIL_HOST_PASSWORD = os.getenv('password')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+# yookassa
+
+YOOKASSA_SHOP_ID = os.getenv('YOOKASSA_SHOP_ID')
+YOOKASSA_SECRET_KEY = os.getenv('YOOKASSA_SECRET_KEY')

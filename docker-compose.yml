@@ -2,6 +2,7 @@ version: '3.9'
 
 services:
     web:
+        restart: always
         build: .
         container_name: "django"
         command: bash entrypoint.sh
@@ -18,6 +19,7 @@ services:
         env_file:
             - .env
     db_shop:
+        restart: always
         image: postgres:15
         container_name: "POSTGRES_DB"
         volumes:
@@ -37,6 +39,7 @@ services:
     #     ports:
     #         - 80:80
     rabbitmq:
+        restart: always
         image: rabbitmq:3.12-management
         container_name: "rabbitmq"
         environment:
@@ -46,6 +49,7 @@ services:
         - "5672:5672"
         - "15672:15672"
     celery:
+        restart: always
         build: .
         container_name: 'celery'
         command: bash celery.sh
