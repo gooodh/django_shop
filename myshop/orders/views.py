@@ -5,9 +5,12 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 import weasyprint
+
 from .models import OrderItem, Order
 from .forms import OrderCreateForm
-from .tasks import order_created
+from payment.tasks import payment_completed  #  при отправлении email c pdf
+# from .tasks import order_created  при отправлении email без pdf
+
 from cart.cart import Cart
 
 
@@ -24,7 +27,8 @@ def order_create(request):
                                          quantity=item['quantity'])
             # clear the cart
             cart.clear()
-            order_created.delay(order.id)
+            # order_created.delay(order.id) при отправлении email без pdf
+            payment_completed.delay(order.id)  #при отправлении email c pdf
             request.session['order_id'] = order.id
             # redirect for payment
             return redirect(reverse('payment:process'))
