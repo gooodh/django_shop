@@ -9,7 +9,7 @@ services:
         # command: python /shop/myshop/manage.py runserver  --insecure 0.0.0.0:8000
         # command: gunicorn config.wsgi -b 0.0.0.0:8000 # new
         volumes:
-        - static_volume:/shop/staticfiles
+        - static_volume:/shop/static
         - media_volume:/shop/myshop/media
         ports:
             - 8000:8000

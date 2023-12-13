@@ -17,7 +17,7 @@ COPY requirements.txt /shop/
 RUN pip install -r requirements.txt
 
 COPY --chown=shop:shop . .
-RUN mkdir /shop/staticfiles
+RUN mkdir /shop/static
 RUN mkdir /shop/myshop/media
 RUN chown -R shop:shop /shop && chmod 755 /shop
 
