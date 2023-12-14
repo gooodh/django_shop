@@ -12,7 +12,7 @@ docker compose exec web python myshop/manage.py createsuperuser admin stqhJQmh a
 docker compose exec web python myshop/manage.py test
 
 docker compose logs
-docker compose exec web python myshop/manage.py collectstatic --noinput
+docker compose exec web p`
 
 docker compose exec nginx bash
 
@@ -33,7 +33,7 @@ git branch soaqaz_prod
 git checkout soaqaz_prod
 git push --set-upstream origin soaqaz_prod
 
-441 остановвился
+521 остановвился
 
 
 

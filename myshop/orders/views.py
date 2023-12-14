@@ -8,7 +8,7 @@ import weasyprint
 
 from .models import OrderItem, Order
 from .forms import OrderCreateForm
-from payment.tasks import payment_completed  #  при отправлении email c pdf
+from payment.tasks import payment_completed  # при отправлении email c pdf
 # from .tasks import order_created  при отправлении email без pdf
 
 from cart.cart import Cart
@@ -32,7 +32,7 @@ def order_create(request):
             # clear the cart
             cart.clear()
             # order_created.delay(order.id) при отправлении email без pdf
-            payment_completed.delay(order.id)  #при отправлении email c pdf
+            payment_completed.delay(order.id)  # при отправлении email c pdf
             request.session['order_id'] = order.id
             # redirect for payment
             return redirect(reverse('payment:process'))

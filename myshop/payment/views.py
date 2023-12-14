@@ -1,4 +1,3 @@
-from decimal import Decimal
 from yookassa import Configuration, Payment
 import uuid
 
@@ -23,13 +22,13 @@ def payment_process(request):
 
         unit_amount = 0
         for item in order.items.all():
-            unit_amount = int(item.price * Decimal('100'))
-
+            unit_amount = int(item.price)
+        get_total_cost = order.get_total_cost()
         currency = 'RUB'
         description = 'Товары в корзине'
         payment = Payment.create({
             "amount": {
-                "value": unit_amount,
+                "value": get_total_cost,
                 "currency": currency},
 
             "confirmation": {
