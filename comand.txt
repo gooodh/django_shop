@@ -17,8 +17,23 @@ docker compose exec web p`
 docker compose exec nginx bash
 
 docker exec -it django bash
+python myshop/manage.py shell
+from shop.models import Product
+book2=Product.objects.get(name='book2')
+tea=Product.objects.get(name='tea')
+green_tea=Product.objects.get(name='Green tea')
+coffe=Product.objects.get(name='Coffe')
+from shop.recommender import Recommender
+r = Recommender()
+r.products_bought([tea, green_tea])
+r.products_bought([coffe, green_tea])
+r.products_bought([book2, green_tea])
+r.products_bought([book2, green_tea, coffe])
 cd myshop
 celery -A myshop worker -l info
+
+docker exec -it redis sh
+redis-cli
 
 docker ps -a
 docker stop 
@@ -33,7 +48,8 @@ git branch soaqaz_prod
 git checkout soaqaz_prod
 git push --set-upstream origin soaqaz_prod
 
-521 остановвился
+377 redis
+530 остановвился
 
 
 
