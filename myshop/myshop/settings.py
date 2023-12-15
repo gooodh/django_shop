@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
@@ -140,7 +140,6 @@ CELERY_BROKER_URL = 'amqp://guest:guest@rabbitmq:5672/'
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Конфигурация сервера электронной почты
-
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = os.getenv('addr_from')
 EMAIL_HOST_PASSWORD = os.getenv('password')
@@ -148,6 +147,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # yookassa
-
 YOOKASSA_SHOP_ID = os.getenv('YOOKASSA_SHOP_ID')
 YOOKASSA_SECRET_KEY = os.getenv('YOOKASSA_SECRET_KEY')
+
+# redis
+REDIS_HOST = 'redis'
+REDIS_PORT = '6379'
+REDIS_DB = 0
